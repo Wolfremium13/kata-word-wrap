@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "kata-word-wrap", "kata-word-wrap\kata-word-wrap.csproj", "{80EC4AE9-E294-4456-933B-F7E13312498D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80EC4AE9-E294-4456-933B-F7E13312498D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80EC4AE9-E294-4456-933B-F7E13312498D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80EC4AE9-E294-4456-933B-F7E13312498D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80EC4AE9-E294-4456-933B-F7E13312498D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
