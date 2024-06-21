@@ -8,7 +8,7 @@ sure no line is longer than N characters.
 
 ## Examples using priority premise principle
 
-- Given "" and 1, it should return ""
+- Given "" and 1, it should return Error "There is no text to wrap"
 - Given "a" and 1, it should return "a"
 - Given "Hello, world!" and 0, it should return "Hello, world!"
 - Given "a b" and 1, it should return "a\nb"
@@ -16,4 +16,4 @@ sure no line is longer than N characters.
 - Given "a b c" and 3, it should return "a b\nc"
 - Given "Hello, world!" and 5, it should return "Hello,\nworld!"
 - Given "Hello, world!" and 7, it should return "Hello,\nworld!"
-- Given "Hello, world!" and -1, it should return "Hello, world!"
+- Given "Hello, world!" and -1, it should return Error "We cannot wrap the text with negative width"
