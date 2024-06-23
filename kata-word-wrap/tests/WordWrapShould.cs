@@ -8,7 +8,7 @@ public class WordWrapShould
     [Fact]
     public void NotAllowEmptyText()
     {
-        var missingTextError = 
+        var missingTextError =
             from text in Text.From("")
             from columnWidth in ColumnWith.From(10)
             from wrapped in WordWrap.Wrap(text, columnWidth)
@@ -24,7 +24,7 @@ public class WordWrapShould
     [Fact]
     public void NotAllowInvalidColumnWidth()
     {
-        var invalidColumnWidthError = 
+        var invalidColumnWidthError =
             from text in Text.From("Hello")
             from columnWidth in ColumnWith.From(0)
             from wrapped in WordWrap.Wrap(text, columnWidth)
@@ -42,6 +42,7 @@ public class WordWrapShould
     {
         const string shortText = "Hello";
         const int longColumnWidth = 10;
+
         var wrappedText =
             from text in Text.From(shortText)
             from columnWidth in ColumnWith.From(longColumnWidth)
@@ -59,6 +60,7 @@ public class WordWrapShould
     {
         const string longText = "Hello World! How are you?";
         const int shortColumnWidth = 5;
+
         var wrappedText =
             from text in Text.From(longText)
             from columnWidth in ColumnWith.From(shortColumnWidth)
@@ -76,6 +78,7 @@ public class WordWrapShould
     {
         const string longText = "Hello World! How are you?";
         const int shortColumnWidth = 10;
+
         var wrappedText =
             from text in Text.From(longText)
             from columnWidth in ColumnWith.From(shortColumnWidth)
