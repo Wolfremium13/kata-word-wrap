@@ -8,10 +8,11 @@ public class WordWrapShould
     [Fact]
     public void NotAllowEmptyText()
     {
-        var missingTextError = Text.From("").Bind(text =>
-        {
-            return ColumnWith.From(10).Bind(columnWith => WordWrap.Wrap(text, columnWith));
-        });
+        var missingTextError = 
+            from text in Text.From("")
+            from columnWidth in ColumnWith.From(10)
+            from wrapped in WordWrap.Wrap(text, columnWidth)
+            select wrapped;
 
         missingTextError.Match(
             wrappedText => wrappedText.Should().BeNull(),
@@ -23,15 +24,16 @@ public class WordWrapShould
     [Fact]
     public void NotAllowInvalidColumnWidth()
     {
-        var negativeColumnWidthError = Text.From("Hello").Bind(text =>
-        {
-            return ColumnWith.From(-1).Bind(columnWith => WordWrap.Wrap(text, columnWith));
-        });
+        var invalidColumnWidthError = 
+            from text in Text.From("Hello")
+            from columnWidth in ColumnWith.From(0)
+            from wrapped in WordWrap.Wrap(text, columnWidth)
+            select wrapped;
 
-        negativeColumnWidthError.Match(
+        invalidColumnWidthError.Match(
             wrappedText => wrappedText.Should().BeNull(),
-            error => error.Should().BeOfType<InvalidColumnWidthError>().Which.Message.Should()
-                .Be("Column width must be greater than 0.")
+            error => error.Should().BeOfType<InvalidColumnWidthError>()
+                .Which.Message.Should().Be("Column width must be greater than 0.")
         );
     }
 
@@ -39,11 +41,12 @@ public class WordWrapShould
     public void NotWrap()
     {
         const string shortText = "Hello";
-        var wrappedText = Text.From(shortText).Bind(text =>
-        {
-            const int longColumnWidth = 10;
-            return ColumnWith.From(longColumnWidth).Bind(columnWith => WordWrap.Wrap(text, columnWith));
-        });
+        const int longColumnWidth = 10;
+        var wrappedText =
+            from text in Text.From(shortText)
+            from columnWidth in ColumnWith.From(longColumnWidth)
+            from wrapped in WordWrap.Wrap(text, columnWidth)
+            select wrapped;
 
         wrappedText.Match(
             text => text.ToString().Should().Be(shortText),
@@ -55,11 +58,12 @@ public class WordWrapShould
     public void WrapWords()
     {
         const string longText = "Hello World! How are you?";
-        var wrappedText = Text.From(longText).Bind(text =>
-        {
-            const int shortColumnWidth = 5;
-            return ColumnWith.From(shortColumnWidth).Bind(columnWith => WordWrap.Wrap(text, columnWith));
-        });
+        const int shortColumnWidth = 5;
+        var wrappedText =
+            from text in Text.From(longText)
+            from columnWidth in ColumnWith.From(shortColumnWidth)
+            from wrapped in WordWrap.Wrap(text, columnWidth)
+            select wrapped;
 
         wrappedText.Match(
             text => text.ToString().Should().Be("Hello\nWorld!\nHow\nare\nyou?"),
@@ -71,11 +75,12 @@ public class WordWrapShould
     public void WrapMultipleWords()
     {
         const string longText = "Hello World! How are you?";
-        var wrappedText = Text.From(longText).Bind(text =>
-        {
-            const int shortColumnWidth = 10;
-            return ColumnWith.From(shortColumnWidth).Bind(columnWith => WordWrap.Wrap(text, columnWith));
-        });
+        const int shortColumnWidth = 10;
+        var wrappedText =
+            from text in Text.From(longText)
+            from columnWidth in ColumnWith.From(shortColumnWidth)
+            from wrapped in WordWrap.Wrap(text, columnWidth)
+            select wrapped;
 
         wrappedText.Match(
             text => text.ToString().Should().Be("Hello\nWorld! How\nare you?"),
