@@ -3,7 +3,7 @@ using Xunit;
 
 namespace kata_word_wrap.tests;
 
-public class WordWrapShould
+public class WordWrapperShould
 {
     [Fact]
     public void NotAllowEmptyText()
