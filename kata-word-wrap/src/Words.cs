@@ -1,24 +1,12 @@
 namespace kata_word_wrap;
 
-public class Words
+public class Words(List<Word> words)
 {
-    private readonly List<Word> _words;
-    public readonly int Length;
-
-    public Words()
+    public Words() : this([])
     {
-        _words = new();
-        Length = 0;
     }
 
-
-    public Words(List<Word> words)
-    {
-        _words = words;
-        Length = ToString().Length;
-    }
-
-    public List<Word> ToList() => _words;
-    public void Append(Word word) => _words.Add(word);
-    public sealed override string ToString() => string.Join(" ", _words.Select(word => word.Value));
+    public List<Word> ToList() => words;
+    public void Append(Word word) => words.Add(word);
+    public sealed override string ToString() => string.Join(" ", words.Select(word => word.Value));
 }
