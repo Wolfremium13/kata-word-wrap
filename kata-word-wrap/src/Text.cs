@@ -9,7 +9,7 @@ public record Text
     private Text(string text) =>
         _words = new Words(text.Split(" ").Select(w => new Word(w)).ToList());
 
-    public static Either<Error, Text> From(string text)
+    public static Either<Error, Text> Create(string text)
     {
         if (string.IsNullOrWhiteSpace(text))
         {

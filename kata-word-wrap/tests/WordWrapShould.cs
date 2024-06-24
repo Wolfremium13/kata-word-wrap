@@ -9,9 +9,9 @@ public class WordWrapShould
     public void NotAllowEmptyText()
     {
         var missingTextError =
-            from text in Text.From("")
-            from columnWidth in ColumnWith.From(10)
-            from wrapped in WordWrap.Wrap(text, columnWidth)
+            from text in Text.Create("")
+            from columnWidth in ColumnWith.Create(10)
+            from wrapped in WordWrapper.Wrap(text, columnWidth)
             select wrapped;
 
         missingTextError.Match(
@@ -25,9 +25,9 @@ public class WordWrapShould
     public void NotAllowInvalidColumnWidth()
     {
         var invalidColumnWidthError =
-            from text in Text.From("Hello")
-            from columnWidth in ColumnWith.From(0)
-            from wrapped in WordWrap.Wrap(text, columnWidth)
+            from text in Text.Create("Hello")
+            from columnWidth in ColumnWith.Create(0)
+            from wrapped in WordWrapper.Wrap(text, columnWidth)
             select wrapped;
 
         invalidColumnWidthError.Match(
@@ -44,9 +44,9 @@ public class WordWrapShould
         const int longColumnWidth = 10;
 
         var wrappedText =
-            from text in Text.From(shortText)
-            from columnWidth in ColumnWith.From(longColumnWidth)
-            from wrapped in WordWrap.Wrap(text, columnWidth)
+            from text in Text.Create(shortText)
+            from columnWidth in ColumnWith.Create(longColumnWidth)
+            from wrapped in WordWrapper.Wrap(text, columnWidth)
             select wrapped;
 
         wrappedText.Match(
@@ -62,9 +62,9 @@ public class WordWrapShould
         const int shortColumnWidth = 5;
 
         var wrappedText =
-            from text in Text.From(longText)
-            from columnWidth in ColumnWith.From(shortColumnWidth)
-            from wrapped in WordWrap.Wrap(text, columnWidth)
+            from text in Text.Create(longText)
+            from columnWidth in ColumnWith.Create(shortColumnWidth)
+            from wrapped in WordWrapper.Wrap(text, columnWidth)
             select wrapped;
 
         wrappedText.Match(
@@ -80,9 +80,9 @@ public class WordWrapShould
         const int shortColumnWidth = 10;
 
         var wrappedText =
-            from text in Text.From(longText)
-            from columnWidth in ColumnWith.From(shortColumnWidth)
-            from wrapped in WordWrap.Wrap(text, columnWidth)
+            from text in Text.Create(longText)
+            from columnWidth in ColumnWith.Create(shortColumnWidth)
+            from wrapped in WordWrapper.Wrap(text, columnWidth)
             select wrapped;
 
         wrappedText.Match(

@@ -7,7 +7,7 @@ public record ColumnWith
     private readonly int _width;
     private ColumnWith(int width) => _width = width;
 
-    public static Either<Error, ColumnWith> From(int width)
+    public static Either<Error, ColumnWith> Create(int width)
     {
         if (width <= 0)
         {
